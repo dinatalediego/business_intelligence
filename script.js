@@ -49,9 +49,9 @@ const escapeHtml = (value) =>
       })[character],
   );
 
-const points = (values, width = 300, height = 112) => {
-  const max = Math.max(...values);
-  const min = Math.min(...values);
+const points = (values, width = 300, height = 112, domain = values) => {
+  const max = Math.max(...domain);
+  const min = Math.min(...domain);
   const range = max - min || 1;
   return values.map((value, index) => {
     const x = 18 + (index * (width - 36)) / Math.max(values.length - 1, 1);
@@ -61,8 +61,9 @@ const points = (values, width = 300, height = 112) => {
 };
 
 function lineChart(chart, accent) {
-  const series = points(chart.values);
-  const comparison = chart.compare ? points(chart.compare) : [];
+  const domain = chart.compare ? [...chart.values, ...chart.compare] : chart.values;
+  const series = points(chart.values, 300, 112, domain);
+  const comparison = chart.compare ? points(chart.compare, 300, 112, domain) : [];
   const labels = series
     .map(
       (point, index) =>
