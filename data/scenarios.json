@@ -1,0 +1,256 @@
+[
+  {
+    "id": "customer",
+    "tab": "Clientes",
+    "label": "Cliente / Conversión",
+    "scene": "Una reserva no es todavía una llegada",
+    "question": "¿A quién estamos dejando de escuchar antes de que abandone?",
+    "context": "El promedio mensual decía que la conversión era estable. La espera entre la reserva y la primera respuesta contaba otra historia.",
+    "quote": "No era falta de interés. Era una conversación que empezaba demasiado tarde.",
+    "image": "/assets/bi-customer.webp",
+    "imageAlt": "Dueña de un pequeño negocio abriendo su local al inicio del día",
+    "accent": "#ffbc75",
+    "steps": {
+      "data": {
+        "title": "1,248 solicitudes, respuestas y reservas",
+        "copy": "Eventos demostrativos con marca de tiempo, canal, segmento y desenlace durante ocho semanas.",
+        "note": "Unidad de análisis: una solicitud. Ventana: 56 días. Los datos son sintéticos."
+      },
+      "evidence": {
+        "title": "La conversión cae cuando la primera respuesta supera 15 minutos",
+        "copy": "El corte por tiempo de respuesta muestra una diferencia que el promedio semanal escondía.",
+        "note": "Visual correcto: curva de conversión por intervalo de espera, no una tarjeta de promedio."
+      },
+      "decision": {
+        "title": "Priorizar alertas de respuestas tardías",
+        "copy": "Durante dos semanas, el equipo atiende primero las solicitudes que llegan a 10 minutos sin contacto.",
+        "note": "Responsable demostrativo: jefatura comercial. Regla: intervenir antes de 15 minutos."
+      },
+      "outcome": {
+        "title": "+6.8 pp en el grupo intervenido",
+        "copy": "En el escenario simulado, la conversión observada pasa de 18.1% a 24.9%.",
+        "note": "Resultado del escenario, no impacto real. Para causalidad se requiere comparación controlada."
+      }
+    },
+    "chart": {
+      "type": "line",
+      "labels": ["<5m", "5–15m", "15–30m", "30–60m", ">60m"],
+      "values": [31, 28, 20, 14, 8],
+      "suffix": "%"
+    },
+    "keywords": ["cliente", "lead", "conversión", "conversion", "reserva", "compra", "abandono", "atención", "respuesta"],
+    "firstSignal": "tiempo entre la intención del cliente y la primera respuesta efectiva"
+  },
+  {
+    "id": "growth",
+    "tab": "Crecimiento",
+    "label": "Ingresos / Crecimiento",
+    "scene": "Crecer no siempre significa crear valor",
+    "question": "¿Qué está haciendo crecer realmente los ingresos?",
+    "context": "La facturación subió. Al separar precio, volumen, mix y descuentos, el crecimiento se volvió menos cómodo y mucho más útil.",
+    "quote": "Celebrábamos una cifra que el margen todavía no podía sostener.",
+    "image": "/assets/bi-people.webp",
+    "imageAlt": "Equipo de negocio reunido y reflexionando alrededor de una mesa",
+    "accent": "#9fd6ff",
+    "steps": {
+      "data": {
+        "title": "Ventas por producto, cliente y condición comercial",
+        "copy": "Doce meses de unidades, precio, descuento, coste variable y canal en un modelo común.",
+        "note": "La definición de ingreso y margen se congela antes de comparar periodos."
+      },
+      "evidence": {
+        "title": "El mix explica 61% del crecimiento; el volumen, solo 17%",
+        "copy": "Una descomposición puente evita atribuir todo el cambio a una campaña reciente.",
+        "note": "Visual correcto: waterfall de contribución; una línea total no responde la pregunta."
+      },
+      "decision": {
+        "title": "Proteger el mix rentable antes de comprar más volumen",
+        "copy": "Se reasigna el siguiente tramo de inversión hacia las combinaciones de producto y canal con margen incremental.",
+        "note": "Condición: no ampliar gasto si el margen incremental cae bajo el umbral acordado."
+      },
+      "outcome": {
+        "title": "+2.4 pp de margen contributivo",
+        "copy": "El escenario registra mejora del margen con crecimiento de ingresos moderado.",
+        "note": "Resultado observado dentro del dataset demostrativo; requiere replicación con datos reales."
+      }
+    },
+    "chart": {
+      "type": "waterfall",
+      "labels": ["Precio", "Volumen", "Mix", "Descuento"],
+      "values": [12, 17, 61, -9],
+      "suffix": " pp"
+    },
+    "keywords": ["crecer", "crecimiento", "ingreso", "venta", "facturación", "revenue", "mix", "volumen"],
+    "firstSignal": "descomposición del cambio de ingresos entre precio, volumen, mix y descuento"
+  },
+  {
+    "id": "pricing",
+    "tab": "Pricing",
+    "label": "Precio / Valor",
+    "scene": "Dos productos iguales para el sistema, distintos para el cliente",
+    "question": "¿Dónde está el valor que el precio todavía no captura?",
+    "context": "El precio promedio parecía coherente. La disposición a pagar cambiaba con atributos que la lista trataba como equivalentes.",
+    "quote": "No estábamos cobrando de más o de menos. Estábamos cobrando sin escuchar.",
+    "image": "/assets/bi-customer.webp",
+    "imageAlt": "Comerciante revisando su negocio al comenzar la jornada",
+    "accent": "#e7c985",
+    "steps": {
+      "data": {
+        "title": "Precios, atributos, disponibilidad y velocidad de venta",
+        "copy": "Snapshots semanales por unidad con estado comercial, consultas, descuentos y fecha de cierre.",
+        "note": "Cada observación conserva el precio que el cliente vio en ese momento."
+      },
+      "evidence": {
+        "title": "Los atributos explican una prima que el promedio por m² borra",
+        "copy": "La dispersión y una regresión hedónica señalan zonas de subprecio y sobreprecio.",
+        "note": "Visual correcto: scatter precio–absorción con residuales; no un ranking aislado."
+      },
+      "decision": {
+        "title": "Probar una corrección pequeña y reversible",
+        "copy": "Se ajusta una cohorte de unidades comparables y se conserva otra como referencia.",
+        "note": "La prueba define de antemano margen, velocidad y límites de descuento."
+      },
+      "outcome": {
+        "title": "+3.1% de ingreso esperado sin frenar absorción",
+        "copy": "En el escenario, el grupo ajustado mantiene el ritmo y mejora ingreso neto esperado.",
+        "note": "Resultado demostrativo. No sustituye un experimento o análisis causal real."
+      }
+    },
+    "chart": {
+      "type": "scatter",
+      "labels": ["A", "B", "C", "D", "E", "F", "G"],
+      "values": [22, 38, 31, 55, 47, 72, 64],
+      "suffix": ""
+    },
+    "keywords": ["precio", "pricing", "descuento", "margen", "valor", "elasticidad", "absorción", "stock"],
+    "firstSignal": "relación entre precio relativo, atributos comparables y velocidad de absorción"
+  },
+  {
+    "id": "operations",
+    "tab": "Operaciones",
+    "label": "Operaciones / Servicio",
+    "scene": "El promedio llega a tiempo. Algunas personas no.",
+    "question": "¿Dónde está esperando el cliente mientras nosotros vemos un promedio?",
+    "context": "El tiempo medio cumplía la meta, pero una cola pequeña concentraba casi todas las promesas rotas.",
+    "quote": "La eficiencia era cierta. También lo era la espera de quienes quedaron al final.",
+    "image": "/assets/bi-operations.webp",
+    "imageAlt": "Operación logística al amanecer con un trabajador observando el flujo",
+    "accent": "#79d9cc",
+    "steps": {
+      "data": {
+        "title": "Eventos de proceso, capacidad y promesas",
+        "copy": "Trazas por caso desde el ingreso hasta la resolución, con bloqueos y reaperturas.",
+        "note": "La mediana se acompaña de percentiles y distribución completa."
+      },
+      "evidence": {
+        "title": "El 11% de casos explica el 58% de la demora total",
+        "copy": "La distribución por etapa identifica un cuello de botella intermitente, no falta general de capacidad.",
+        "note": "Visual correcto: distribución y flujo por etapa; el promedio oculta la cola."
+      },
+      "decision": {
+        "title": "Separar la excepción antes de que contamine la cola",
+        "copy": "Se crea una ruta operativa para casos con documentación incompleta y una alerta al segundo bloqueo.",
+        "note": "La intervención tiene responsable y plazo máximo de 24 horas."
+      },
+      "outcome": {
+        "title": "P90 de 9.2 a 5.8 días",
+        "copy": "El escenario muestra una reducción de la cola sin aumentar la dotación.",
+        "note": "Resultado sintético observado. Falta validación con datos operativos reales."
+      }
+    },
+    "chart": {
+      "type": "bars",
+      "labels": ["P50", "P75", "P90", "P95"],
+      "values": [2.1, 3.6, 5.8, 7.4],
+      "compare": [2.2, 4.7, 9.2, 13.1],
+      "suffix": "d"
+    },
+    "keywords": ["operación", "operaciones", "tiempo", "demora", "espera", "proceso", "servicio", "entrega", "capacidad"],
+    "firstSignal": "distribución del tiempo de ciclo por etapa, especialmente P90 y casos reabiertos"
+  },
+  {
+    "id": "people",
+    "tab": "Personas",
+    "label": "Personas / Capacidad",
+    "scene": "Un indicador de desempeño también puede ser una petición de ayuda",
+    "question": "¿Quién necesita apoyo antes de que el resultado se deteriore?",
+    "context": "El ranking mostraba quién iba atrás. La carga, la experiencia y el tipo de cartera explicaban por qué.",
+    "quote": "No era encontrar al peor. Era llegar antes de que alguien quedara solo con el problema.",
+    "image": "/assets/bi-people.webp",
+    "imageAlt": "Equipo conversando con atención en una reunión de trabajo",
+    "accent": "#c9b4ff",
+    "steps": {
+      "data": {
+        "title": "Carga, actividad, complejidad y resultados",
+        "copy": "Se combinan eventos de trabajo con contexto de cartera sin usar atributos personales sensibles.",
+        "note": "El análisis evita convertir el score en una etiqueta permanente."
+      },
+      "evidence": {
+        "title": "La caída aparece dos semanas después de la sobrecarga",
+        "copy": "Cohortes comparables muestran que la saturación precede al deterioro de conversión.",
+        "note": "Visual correcto: trayectorias por cohorte; un ranking no muestra la causa."
+      },
+      "decision": {
+        "title": "Redistribuir carga y acompañar, no sancionar",
+        "copy": "Se limita temporalmente la asignación y se activa acompañamiento para la cohorte con señal temprana.",
+        "note": "La persona conoce el criterio y puede cuestionar la clasificación."
+      },
+      "outcome": {
+        "title": "–18% en casos vencidos",
+        "copy": "En el escenario, la cohorte acompañada reduce rezagos sin pérdida de producción.",
+        "note": "Resultado demostrativo. Una decisión laboral real necesita gobernanza y revisión humana."
+      }
+    },
+    "chart": {
+      "type": "line",
+      "labels": ["S–3", "S–2", "S–1", "S0", "S+1"],
+      "values": [83, 81, 76, 65, 59],
+      "compare": [82, 81, 80, 79, 78],
+      "suffix": ""
+    },
+    "keywords": ["persona", "personas", "equipo", "asesor", "vendedor", "carga", "desempeño", "talento", "productividad"],
+    "firstSignal": "trayectoria de carga y casos vencidos por cohorte comparable, no un ranking bruto"
+  },
+  {
+    "id": "risk",
+    "tab": "Riesgo",
+    "label": "Riesgo / Señales tempranas",
+    "scene": "Una anomalía pequeña antes de convertirse en una pérdida grande",
+    "question": "¿Qué señal temprana estamos ignorando porque todavía parece pequeña?",
+    "context": "Los cierres seguían dentro de rango. La combinación de reprogramaciones y excepciones crecía en silencio.",
+    "quote": "El riesgo rara vez llega sin avisar. A veces llega hablando demasiado bajo.",
+    "image": "/assets/bi-operations.webp",
+    "imageAlt": "Trabajador frente a una operación logística en actividad",
+    "accent": "#ff8e8e",
+    "steps": {
+      "data": {
+        "title": "Excepciones, reprogramaciones y pérdidas",
+        "copy": "Eventos fechados por caso, causa, proveedor, zona y severidad durante seis meses.",
+        "note": "La línea base distingue estacionalidad de cambio estructural."
+      },
+      "evidence": {
+        "title": "Dos señales débiles juntas multiplican 4.6× el riesgo",
+        "copy": "Una matriz de combinación revela que ninguna alerta aislada era suficiente.",
+        "note": "Visual correcto: matriz de riesgo conjunto con base histórica."
+      },
+      "decision": {
+        "title": "Revisar solo los casos donde coinciden señales",
+        "copy": "Se crea una cola pequeña de revisión y un criterio claro para liberar falsos positivos.",
+        "note": "La alerta ayuda a priorizar; no reemplaza la decisión del responsable."
+      },
+      "outcome": {
+        "title": "72% de casos críticos detectados antes",
+        "copy": "El backtest demostrativo encuentra la mayoría de desenlaces críticos con 9% de casos revisados.",
+        "note": "Backtest sintético, no desempeño prospectivo. Falta observar la operación en vivo."
+      }
+    },
+    "chart": {
+      "type": "matrix",
+      "labels": ["Bajo", "Medio", "Alto"],
+      "values": [8, 19, 37, 16, 43, 68, 28, 61, 92],
+      "suffix": "%"
+    },
+    "keywords": ["riesgo", "fraude", "anomalía", "perdida", "pérdida", "alerta", "incumplimiento", "caída"],
+    "firstSignal": "coincidencia temporal de excepciones, reprogramaciones y cambios respecto de la línea base"
+  }
+]

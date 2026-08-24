@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Un retrato interactivo de Business Intelligence: preguntas de negocio que viajan del dato a la decisión y a un resultado observado."
+    />
+    <meta name="theme-color" content="#090b16" />
+    <title>Business Intelligence — Preguntas que cambian decisiones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#experience">Ir a la experiencia</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Business Intelligence, inicio">
+        <span class="brand-mark" aria-hidden="true">BI</span>
+        <span>Questions / Decisions</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#experience">Preguntas</a>
+        <a href="#films">Películas</a>
+        <a href="#method">Método</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img src="/assets/bi-people.webp" alt="" />
+        </div>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="kicker">Un retrato de Business Intelligence</p>
+          <h1 id="hero-title">
+            El dato no habla.<br />
+            <em>Alguien hace la pregunta.</em>
+          </h1>
+          <p class="hero-copy">
+            Business Intelligence no es mirar un tablero. Es reconocer, a tiempo,
+            que detrás de cada cifra hay una persona esperando una decisión mejor.
+          </p>
+          <a class="primary-action" href="#experience">
+            Entrar a las preguntas
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+        <p class="hero-caption">Lima · 06:42 — antes de la primera decisión del día</p>
+      </section>
+
+      <section class="manifesto" aria-label="Manifiesto">
+        <p class="section-index">01 / La pregunta</p>
+        <blockquote>
+          “Una empresa no se transforma cuando acumula respuestas.
+          <em>Se transforma cuando aprende a preguntar mejor.</em>”
+        </blockquote>
+        <p>
+          Finanzas pregunta por margen. Operaciones, por espera. Comercial, por intención.
+          Personas, por capacidad. Riesgos, por señales débiles. BI hace que esas preguntas
+          compartan evidencia y terminen en una acción verificable.
+        </p>
+      </section>
+
+      <section id="experience" class="experience" aria-labelledby="experience-title">
+        <div class="experience-heading">
+          <div>
+            <p class="section-index">02 / Atlas de preguntas</p>
+            <h2 id="experience-title">¿Qué necesita decidir el negocio?</h2>
+          </div>
+          <p>
+            Elige una lente. Cada recorrido usa datos demostrativos y cierra el ciclo
+            sin presentar una simulación como impacto real.
+          </p>
+        </div>
+
+        <div class="question-tabs" role="tablist" aria-label="Tipos de pregunta" id="question-tabs"></div>
+
+        <article class="story-panel" aria-live="polite">
+          <div class="story-image">
+            <img id="story-image" src="/assets/bi-customer.webp" alt="" />
+            <div class="story-image-overlay"></div>
+            <div class="story-quote">
+              <p id="story-scene">La historia detrás del indicador</p>
+              <blockquote id="story-quote"></blockquote>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <div class="story-meta">
+              <span id="story-label"></span>
+              <span class="demo-badge">Escenario demostrativo</span>
+            </div>
+            <h3 id="story-question"></h3>
+            <p id="story-context" class="story-context"></p>
+
+            <ol class="decision-path" aria-label="Camino de la decisión">
+              <li class="path-step is-active" data-step="data">
+                <button type="button"><span>1</span> Dato</button>
+              </li>
+              <li class="path-step" data-step="evidence">
+                <button type="button"><span>2</span> Evidencia</button>
+              </li>
+              <li class="path-step" data-step="decision">
+                <button type="button"><span>3</span> Decisión</button>
+              </li>
+              <li class="path-step" data-step="outcome">
+                <button type="button"><span>4</span> Resultado</button>
+              </li>
+            </ol>
+
+            <div class="path-detail">
+              <div>
+                <p class="detail-label" id="detail-label">Dato</p>
+                <h4 id="detail-title"></h4>
+                <p id="detail-copy"></p>
+              </div>
+              <div id="evidence-visual" class="evidence-visual" aria-label="Visualización de evidencia"></div>
+              <div class="evidence-note" id="evidence-note"></div>
+            </div>
+
+            <div class="story-controls">
+              <button id="previous-story" class="text-action" type="button">← Anterior</button>
+              <span id="story-counter" aria-live="polite"></span>
+              <button id="next-story" class="text-action" type="button">Siguiente →</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="question-field" aria-labelledby="question-field-title">
+        <div>
+          <p class="section-index">03 / Tu pregunta</p>
+          <h2 id="question-field-title">Toda inteligencia comienza con una incomodidad.</h2>
+          <p>
+            Escribe una pregunta que hoy no está resuelta. El sistema te devuelve la
+            lente más cercana y el primer dato que convendría observar.
+          </p>
+        </div>
+        <form id="question-form">
+          <label for="business-question">Tu pregunta de negocio</label>
+          <textarea
+            id="business-question"
+            rows="3"
+            placeholder="Ej.: ¿Por qué los clientes reservan pero no llegan a comprar?"
+            required
+          ></textarea>
+          <button class="primary-action" type="submit">Encontrar una ruta <span aria-hidden="true">→</span></button>
+        </form>
+        <div id="question-response" class="question-response" hidden aria-live="polite"></div>
+      </section>
+
+      <section id="films" class="films" aria-labelledby="films-title">
+        <div class="films-heading">
+          <p class="section-index">04 / Tres pausas para mirar</p>
+          <h2 id="films-title">Cuando los datos vuelven a ser humanos</h2>
+          <p>
+            Tres piezas audiovisuales para recordar que visualizar, cuestionar y comprender
+            son actos distintos.
+          </p>
+        </div>
+
+        <div class="film-grid">
+          <article class="film-card film-card-featured">
+            <div class="film-frame">
+              <iframe
+                loading="lazy"
+                src="https://embed.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen"
+                title="Hans Rosling: The best stats you've ever seen"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="film-copy">
+              <span>01 · Romper una creencia</span>
+              <h3>Los datos pueden cambiar la imagen que tenemos del mundo.</h3>
+              <p>Hans Rosling convierte una serie temporal en una historia imposible de olvidar.</p>
+              <a href="https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen" target="_blank" rel="noreferrer">Ver en TED ↗</a>
+            </div>
+          </article>
+
+          <article class="film-card">
+            <div class="film-frame">
+              <iframe
+                loading="lazy"
+                src="https://embed.ted.com/talks/david_mccandless_the_beauty_of_data_visualization"
+                title="David McCandless: The beauty of data visualization"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="film-copy">
+              <span>02 · Ver la forma</span>
+              <h3>El diseño no adorna la evidencia. La hace encontrable.</h3>
+              <p>David McCandless muestra cómo una forma visual puede revelar conexiones ocultas.</p>
+              <a href="https://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization" target="_blank" rel="noreferrer">Ver en TED ↗</a>
+            </div>
+          </article>
+
+          <article class="film-card">
+            <div class="film-frame">
+              <iframe
+                loading="lazy"
+                src="https://embed.ted.com/talks/susan_etlinger_what_do_we_do_with_all_this_big_data"
+                title="Susan Etlinger: What do we do with all this big data?"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="film-copy">
+              <span>03 · No confundir contar con comprender</span>
+              <h3>Más información también puede producir una certeza equivocada.</h3>
+              <p>Susan Etlinger devuelve pensamiento crítico al centro de toda decisión con datos.</p>
+              <a href="https://www.ted.com/talks/susan_etlinger_what_do_we_do_with_all_this_big_data" target="_blank" rel="noreferrer">Ver en TED ↗</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="method" class="method" aria-labelledby="method-title">
+        <p class="section-index">05 / La disciplina</p>
+        <h2 id="method-title">BI existe cuando el ciclo se cierra.</h2>
+        <div class="method-grid">
+          <article>
+            <span>01</span>
+            <h3>Pregunta decidible</h3>
+            <p>No “¿qué pasó?”, sino “¿qué haremos distinto si la evidencia cambia?”.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Evidencia trazable</h3>
+            <p>Fuente, definición, corte temporal y límites visibles para quien decide.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Decisión registrada</h3>
+            <p>Una acción, un responsable y una fecha. Sin eso, solo existe información.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Resultado observado</h3>
+            <p>Comparar lo ocurrido con la expectativa y conservar también los resultados incómodos.</p>
+          </article>
+        </div>
+        <div class="closing">
+          <p>La última visual nunca es un gráfico.</p>
+          <blockquote>Es alguien decidiendo mejor.</blockquote>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Business Intelligence — Questions / Decisions</p>
+      <p>Experiencia demostrativa · Los resultados de los relatos no representan desempeño real.</p>
+    </footer>
+  </body>
+</html>
