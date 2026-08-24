@@ -14,6 +14,72 @@ const stepNames = {
   outcome: "Resultado observado",
 };
 
+const ideaLenses = {
+  absorption: {
+    eyebrow: "Velocidad comercial",
+    title: "Absorción",
+    equation: "salidas observadas ÷ stock al inicio",
+    description:
+      "En MEDALLIO la absorción conserva numerador, denominador y ventana temporal. Pricing Economics y la Control Tower usan la presión de inventario como señal, sin convertirla por sí sola en una causa.",
+    projects: [
+      { name: "bd_replica_crm", role: "Mart de absorción 7/30/90 días", status: "evidence" },
+      { name: "data_science_systems", role: "Meses de stock para priorizar revisión", status: "evidence" },
+      { name: "pricing_economics", role: "Presión de inventario en el Decision Lab", status: "evidence" },
+    ],
+  },
+  pricing: {
+    eyebrow: "Economía de decisiones",
+    title: "Pricing",
+    equation: "dato → señal → hipótesis → resultado",
+    description:
+      "Pricing aparece como teoría reproducible, señal comercial y decisión gobernada. La elasticidad ilustrativa sigue marcada como supuesto hasta contar con historia suficiente y validación temporal.",
+    projects: [
+      { name: "pricing_economics", role: "Teoría, elasticidad y estimadores didácticos", status: "evidence" },
+      { name: "data_science_systems", role: "Control Tower y regla V1 auditable", status: "evidence" },
+      { name: "business_intelligence", role: "Escenario narrativo de pricing", status: "evidence" },
+      { name: "bd_replica_crm", role: "La vista Gold sería la fuente productiva", status: "potential" },
+    ],
+  },
+  bi: {
+    eyebrow: "Sentido compartido",
+    title: "Business Intelligence",
+    equation: "pregunta → evidencia → decisión → outcome",
+    description:
+      "BI es la capa que vuelve decidible una señal. Puede consumir marts confiables, explicar límites y registrar qué se hizo, pero los escenarios de este retrato siguen siendo demostrativos.",
+    projects: [
+      { name: "business_intelligence", role: "Seis preguntas y visuales demostrativos", status: "evidence" },
+      { name: "bd_replica_crm", role: "Marts consumibles por Power BI", status: "evidence" },
+      { name: "data_science_systems", role: "Tablero de decisión y outcomes locales", status: "evidence" },
+      { name: "dntl_economia", role: "Causalidad y trazabilidad como lente", status: "potential" },
+    ],
+  },
+  activation: {
+    eyebrow: "La decisión toca el mundo",
+    title: "Activación",
+    equation: "decisión → acción → respuesta observable",
+    description:
+      "La activación empieza cuando una decisión produce una acción registrable. NIDO documenta el puente más concreto del portafolio; LimpiaFast funciona como laboratorio operativo independiente.",
+    projects: [
+      { name: "bd_replica_crm", role: "Refresh exitoso y metadata del evento", status: "evidence" },
+      { name: "dntl_chatbot", role: "Decisión, WhatsApp y outcomes equivalentes", status: "evidence" },
+      { name: "expertos_en_lavados", role: "Anuncio, conversación, reserva y recompra", status: "evidence" },
+      { name: "business_intelligence", role: "Puede narrar el resultado observado", status: "potential" },
+    ],
+  },
+  governance: {
+    eyebrow: "Control del sistema",
+    title: "Gobierno",
+    equation: "observar → priorizar → intervenir → refrescar",
+    description:
+      "El gobierno no es otro dashboard temático: mantiene separadas la salud del repositorio, la ejecución de Actions y la urgencia de intervención para conservar trazabilidad.",
+    projects: [
+      { name: "dntl_engineering_os", role: "Attention Queue y evidencia de GitHub", status: "evidence" },
+      { name: "business_intelligence", role: "Puede explicar la cartera por intención", status: "potential" },
+      { name: "data_science_systems", role: "Requiere gates de modelo y fuente", status: "potential" },
+    ],
+  },
+};
+
 const elements = {
   tabs: document.querySelector("#question-tabs"),
   panel: document.querySelector(".story-panel"),
@@ -34,6 +100,12 @@ const elements = {
   form: document.querySelector("#question-form"),
   input: document.querySelector("#business-question"),
   response: document.querySelector("#question-response"),
+  ideaTabs: document.querySelector("#idea-tabs"),
+  ideaEyebrow: document.querySelector("#idea-eyebrow"),
+  ideaTitle: document.querySelector("#idea-title"),
+  ideaEquation: document.querySelector("#idea-equation"),
+  ideaProjects: document.querySelector("#idea-projects"),
+  ideaDescription: document.querySelector("#idea-description"),
 };
 
 const escapeHtml = (value) =>
@@ -285,6 +357,49 @@ function bindInteractions() {
     elements.response.hidden = false;
     setScenario(matchIndex);
   });
+
+  elements.ideaTabs?.addEventListener("click", (event) => {
+    const tab = event.target.closest("[data-idea]");
+    if (!tab) return;
+    renderIdea(tab.dataset.idea);
+  });
+
+  elements.ideaTabs?.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    event.preventDefault();
+    const tabs = [...elements.ideaTabs.querySelectorAll("[data-idea]")];
+    const current = tabs.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+    const next = tabs[(current + direction + tabs.length) % tabs.length];
+    renderIdea(next.dataset.idea);
+    next.focus();
+  });
+}
+
+function renderIdea(ideaId = "absorption") {
+  const idea = ideaLenses[ideaId];
+  if (!idea || !elements.ideaProjects) return;
+
+  elements.ideaEyebrow.textContent = idea.eyebrow;
+  elements.ideaTitle.textContent = idea.title;
+  elements.ideaEquation.textContent = idea.equation;
+  elements.ideaDescription.textContent = idea.description;
+  elements.ideaProjects.innerHTML = idea.projects
+    .map(
+      (project) => `
+        <article class="idea-project is-${project.status}">
+          <span>${project.status === "evidence" ? "Documentado" : "Pendiente"}</span>
+          <h5>${escapeHtml(project.name)}</h5>
+          <p>${escapeHtml(project.role)}</p>
+        </article>`,
+    )
+    .join("");
+
+  elements.ideaTabs.querySelectorAll("[data-idea]").forEach((tab) => {
+    const active = tab.dataset.idea === ideaId;
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
 }
 
 async function init() {
@@ -295,6 +410,7 @@ async function init() {
     renderTabs();
     bindInteractions();
     renderScenario();
+    renderIdea();
   } catch (error) {
     elements.panel.innerHTML = `
       <div class="story-content">
